@@ -34,6 +34,7 @@ const AnimatedBackground: React.FC = () => {
     }));
 
     function animate() {
+      if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
       lines.forEach((line) => {
         ctx.save();
