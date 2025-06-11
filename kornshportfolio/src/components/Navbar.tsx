@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import ThemeSwitch from './ThemeSwitch';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Accueil', icon: '🏠' },
@@ -15,13 +15,39 @@ const navLinks = [
 
 const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) => {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (onMenuToggle) onMenuToggle(open);
   }, [open, onMenuToggle]);
 
+  // Focus trap & Esc close for mobile menu
+  useEffect(() => {
+    if (!open) return;
+    const focusable = menuRef.current?.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable?.[0];
+    const last = focusable?.[focusable.length - 1];
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Tab' && focusable && focusable.length > 0) {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    first?.focus();
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open]);
+
   return (
-    <nav className="w-full flex justify-between items-center py-4 px-4 sm:px-8 bg-black/90 dark:bg-black/95 backdrop-blur-md shadow-lg fixed top-0 left-0 z-50 border-b border-gray-800">
+    <nav role="navigation" aria-label="Navigation principale" className="w-full flex justify-between items-center py-4 px-4 sm:px-8 bg-black/90 dark:bg-black/95 backdrop-blur-md shadow-lg fixed top-0 left-0 z-50 border-b border-gray-800">
       <div className="flex items-center gap-2 min-w-0">
         <Image src="/logo.jpeg" alt="Logo Kornshdev" width={36} height={36} className="rounded-full shrink-0" />
         <span className="font-bold text-xl text-white truncate">Kornshdev</span>
@@ -61,8 +87,16 @@ const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) =>
       <ThemeSwitch iconOnly />
       {/* Menu latéral mobile */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-100 flex">
-          <div className="w-64 h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg" style={{ background: '#fff', color: '#111' }}>
+        <div
+          className="fixed top-16 left-0 right-0 bottom-0 z-40 bg-black bg-opacity-100 flex"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            ref={menuRef}
+            className="w-64 h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg"
+            style={{ background: '#fff', color: '#111' }}
+          >
             <button
               className="self-end mb-4 text-black text-2xl"
               aria-label="Fermer le menu navigation"
@@ -85,7 +119,7 @@ const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) =>
               ))}
             </ul>
           </div>
-          <div className="flex-1" onClick={() => setOpen(false)} />
+          <div className="flex-1" onClick={() => setOpen(false)} tabIndex={-1} aria-hidden="true" />
         </div>
       )}
     </nav>
