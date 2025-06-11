@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import ThemeSwitch from './ThemeSwitch';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Accueil', icon: '🏠' },
@@ -13,8 +13,13 @@ const navLinks = [
   { href: '/contact', label: 'Contact', icon: '✉️' },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (onMenuToggle) onMenuToggle(open);
+  }, [open, onMenuToggle]);
+
   return (
     <nav className="w-full flex justify-between items-center py-4 px-4 sm:px-8 bg-black/90 dark:bg-black/95 backdrop-blur-md shadow-lg fixed top-0 left-0 z-50 border-b border-gray-800">
       <div className="flex items-center gap-2 min-w-0">
@@ -56,8 +61,8 @@ const Navbar = () => {
       <ThemeSwitch iconOnly />
       {/* Menu latéral mobile */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex">
-          <div className="w-64 bg-black dark:bg-black h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg">
+        <div className="fixed inset-0 z-50 bg-black flex">
+          <div className="w-64 bg-black h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg">
             <button
               className="self-end mb-4 text-white text-2xl"
               aria-label="Fermer le menu navigation"

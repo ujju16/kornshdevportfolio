@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import AnimatedBackground from '../components/AnimatedBackground';
 import Footer from '../components/Footer';
@@ -29,13 +30,15 @@ const recentProjects = [
 ];
 
 export default function HomePage() {
+	const [isNavOpen, setIsNavOpen] = useState(false);
+
 	return (
 		<main
 			className="relative min-h-screen flex flex-col items-center justify-center"
 			style={{ background: 'none' }}
 		>
 			<AnimatedBackground />
-			<Navbar />
+			<Navbar onMenuToggle={setIsNavOpen} />
 			<section className="pt-32 pb-32 w-full max-w-4xl mx-auto text-center" style={{ background: 'none' }}>
 				<h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-2">
 					Kornshdev
@@ -43,7 +46,7 @@ export default function HomePage() {
 				<h2 className="text-xl md:text-2xl text-gray-700 mb-6">
 					Développeur Web Fullstack - Spécialisation Android
 				</h2>
-				<p className="mt-4 text-lg text-black dark:text-gray-300 text-center max-w-2xl mx-auto mb-8">
+				<p className={`mt-4 text-lg text-center max-w-2xl mx-auto mb-8 transition-colors duration-300 ${isNavOpen ? 'text-black' : 'text-black dark:text-gray-300'}` }>
 					Développeur web fullstack & Android passionné, je conçois des applications modernes, performantes et élégantes.
 				</p>
 				<div className="flex flex-wrap gap-6 justify-center mb-10 mt-8">
