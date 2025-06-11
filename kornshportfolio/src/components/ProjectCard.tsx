@@ -7,20 +7,34 @@ interface ProjectCardProps {
   stack: string[];
   github?: string;
   demo?: string;
+  className?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, stack, github, demo }) => (
-  <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col gap-3 hover:scale-105 transition-transform">
-    <h3 className="text-lg font-bold text-blue-700">{title}</h3>
-    <p className="text-gray-700">{description}</p>
-    <div className="flex flex-wrap gap-2 mt-2">
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, stack, github, demo, className }) => (
+  <div
+    className={`rounded-lg p-4 shadow-sm transition-all duration-200 cursor-pointer ${className || ''}`.trim()}
+    style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)', color: 'var(--foreground)' }}
+    onMouseEnter={e => {
+      (e.currentTarget as HTMLDivElement).style.background = 'var(--section-title)';
+      (e.currentTarget as HTMLDivElement).style.color = '#fff';
+    }}
+    onMouseLeave={e => {
+      (e.currentTarget as HTMLDivElement).style.background = 'var(--card-bg)';
+      (e.currentTarget as HTMLDivElement).style.color = 'var(--foreground)';
+    }}
+  >
+    <div className="font-semibold text-lg mb-2">{title}</div>
+    <div className="text-sm opacity-80 mb-2">{description}</div>
+    <div className="flex flex-wrap gap-2 mb-2">
       {stack.map((tech) => (
-        <span key={tech} className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">{tech}</span>
+        <span key={tech} className="px-2 py-0.5 rounded bg-blue-100 dark:bg-cyan-900 text-xs text-blue-800 dark:text-cyan-200">
+          {tech}
+        </span>
       ))}
     </div>
-    <div className="flex gap-4 mt-3">
-      {github && <a href={github} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">GitHub</a>}
-      {demo && <a href={demo} target="_blank" rel="noopener noreferrer" className="text-green-600 underline">Démo</a>}
+    <div className="flex gap-4 mt-2">
+      {github && <a href={github} target="_blank" rel="noopener noreferrer" className="underline text-blue-600 dark:text-cyan-400">Code</a>}
+      {demo && <a href={demo} target="_blank" rel="noopener noreferrer" className="underline text-blue-600 dark:text-cyan-400">Démo</a>}
     </div>
   </div>
 );

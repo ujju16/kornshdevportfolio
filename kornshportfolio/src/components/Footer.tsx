@@ -1,7 +1,7 @@
 // Composant Footer pour le bas de page
-const Footer = () => (
-  <footer className="w-full py-4 px-8 text-center text-gray-500 bg-white/80 backdrop-blur-md shadow-inner mt-12">
-    © {new Date().getFullYear()} Kornshdev. Portfolio Next.js. Tous droits réservés.
+const Footer: React.FC = () => (
+  <footer className="w-full py-6 mt-8 text-center" style={{ background: 'var(--section-bg)', color: 'var(--foreground)' }}>
+    <span className="opacity-80">© {new Date().getFullYear()} Kornshdev. Tous droits réservés.</span>
   </footer>
 );
 

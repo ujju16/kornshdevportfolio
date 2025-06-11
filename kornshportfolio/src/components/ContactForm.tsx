@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ContactForm = () => (
-  <form className="flex flex-col gap-4 max-w-md mx-auto bg-white/90 p-8 rounded-lg shadow-lg mt-8">
+const ContactForm: React.FC<{ className?: string }> = ({ className }) => (
+  <form className={`flex flex-col gap-4 ${className || ''}`.trim()}>
     <label className="font-semibold">Nom
       <input type="text" name="name" className="w-full mt-1 p-2 border rounded" required />
     </label>

@@ -43,15 +43,13 @@ const projects = [
 
 export default function ProjectsPage() {
 	return (
-		<main className="min-h-screen bg-gray-50 pt-24 pb-12">
+		<main className="min-h-screen pt-24 pb-12">
 			<Navbar />
-			<section className="max-w-5xl mx-auto px-4">
-				<h1 className="text-3xl font-bold text-blue-700 mb-8 text-center">
-					Projets
-				</h1>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{projects.map((proj) => (
-						<ProjectCard key={proj.title} {...proj} />
+			<section className="max-w-4xl mx-auto px-4 rounded-lg shadow-md my-8" style={{ background: 'var(--section-bg)' }}>
+				<h1 className="text-3xl font-bold mb-8 text-center section-title">Projets</h1>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+					{projects.map((project) => (
+						<ProjectCard key={project.title} {...project} className="project-card" />
 					))}
 				</div>
 			</section>

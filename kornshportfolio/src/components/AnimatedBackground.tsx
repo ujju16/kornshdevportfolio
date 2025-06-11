@@ -27,7 +27,15 @@ const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [lines, setLines] = React.useState<AnimatedLine[]>([]);
 
+  // Empêche l'animation côté serveur pour éviter l'hydration mismatch
+  const [isClient, setIsClient] = React.useState(false);
+
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
     function generateLines() {
       return Array.from({ length: 12 }, () => ({
         text: codeLines[Math.floor(Math.random() * codeLines.length)],
@@ -41,9 +49,10 @@ const AnimatedBackground: React.FC = () => {
       }));
     }
     setLines(generateLines());
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
+    if (!isClient) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -113,7 +122,7 @@ const AnimatedBackground: React.FC = () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('resize', updateLines);
     };
-  }, [lines]);
+  }, [lines, isClient]);
 
   return (
     <canvas
