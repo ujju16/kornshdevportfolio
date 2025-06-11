@@ -43,10 +43,8 @@ export default function HomePage() {
 				<h2 className="text-xl md:text-2xl text-gray-700 mb-6">
 					Développeur Web Fullstack - Spécialisation Android
 				</h2>
-				<p className="mb-8 text-gray-600 max-w-2xl mx-auto">
-					Passionné par le développement mobile (Kotlin, Java, Flutter) et web
-					(React, Next.js, Python, Elixir), je conçois des solutions performantes
-					et modernes.
+				<p className="mt-4 text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mx-auto">
+					Développeur web fullstack & Android passionné, je conçois des applications modernes, performantes et élégantes.
 				</p>
 				<div className="flex flex-wrap gap-6 justify-center mb-10">
 					{recentProjects.map((proj) => (
