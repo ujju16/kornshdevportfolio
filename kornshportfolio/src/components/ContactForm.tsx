@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+"use client";
 
-const formspreeUrl = process.env.NEXT_PUBLIC_FORMSPREE_URL || '';
+import React, { useState } from 'react';
 
 function ContactForm({ className }: { className?: string }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
+  // Déclarer la variable dans le composant pour garantir l'accès côté client
+  const formspreeUrl = process.env.NEXT_PUBLIC_FORMSPREE_URL || '';
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
