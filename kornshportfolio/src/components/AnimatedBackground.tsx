@@ -83,7 +83,9 @@ const AnimatedBackground: React.FC = () => {
       const color = getColor();
       const now = Date.now() / 1000;
       lines.forEach((line, i) => {
+        // Ajout d'une rotation douce sur elle-même en plus de la trajectoire
         const angle = line.angle + now * line.speed * (i % 2 === 0 ? 1 : -1);
+        const selfRotation = now * 0.5 + i; // vitesse de rotation sur elle-même
         const x = line.centerX + Math.cos(angle) * line.radius;
         const y = line.centerY + Math.sin(angle) * line.radius;
         ctx.save();
@@ -91,7 +93,7 @@ const AnimatedBackground: React.FC = () => {
         ctx.font = `${line.fontSize}px Fira Mono, monospace`;
         ctx.fillStyle = color;
         ctx.translate(x, y);
-        ctx.rotate(angle);
+        ctx.rotate(angle + selfRotation);
         ctx.fillText(line.text, 0, 0);
         ctx.restore();
       });
