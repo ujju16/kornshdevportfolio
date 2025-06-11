@@ -70,7 +70,7 @@ const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) =>
             >
               &times;
             </button>
-            <ul className="flex flex-col gap-4 text-lg font-medium">
+            <ul className="flex flex-col gap-4 text-lg font-medium text-white">
               {navLinks.map((nav) => (
                 <li key={nav.href}>
                   <Link
