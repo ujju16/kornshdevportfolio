@@ -43,10 +43,10 @@ export default function HomePage() {
 				<h2 className="text-xl md:text-2xl text-gray-700 mb-6">
 					Développeur Web Fullstack - Spécialisation Android
 				</h2>
-				<p className="mt-4 text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mx-auto">
+				<p className="mt-4 text-lg text-black dark:text-gray-300 text-center max-w-2xl mx-auto mb-8">
 					Développeur web fullstack & Android passionné, je conçois des applications modernes, performantes et élégantes.
 				</p>
-				<div className="flex flex-wrap gap-6 justify-center mb-10">
+				<div className="flex flex-wrap gap-6 justify-center mb-10 mt-8">
 					{recentProjects.map((proj) => (
 						<ProjectCard key={proj.title} {...proj} />
 					))}
