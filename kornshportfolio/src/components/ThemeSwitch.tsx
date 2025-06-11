@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-const ThemeSwitch: React.FC = () => {
+const ThemeSwitch: React.FC<{ iconOnly?: boolean }> = ({ iconOnly }) => {
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -53,11 +53,15 @@ const ThemeSwitch: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="ml-4 px-3 py-1 rounded bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-700 transition-colors"
+      className={iconOnly ? "ml-2 text-2xl bg-transparent border-none p-0" : "ml-4 px-3 py-1 rounded bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-700 transition-colors"}
       aria-label="Changer le thème"
       type="button"
     >
-      {theme === 'dark' ? '☀️ Clair' : '🌙 Sombre'}
+      {theme === 'dark' ? (
+        <span aria-label="Passer en mode clair" role="img">☀️</span>
+      ) : (
+        <span aria-label="Passer en mode sombre" role="img">🌙</span>
+      )}
     </button>
   );
 };
