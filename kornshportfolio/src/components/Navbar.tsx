@@ -61,8 +61,8 @@ const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) =>
       <ThemeSwitch iconOnly />
       {/* Menu latéral mobile */}
       {open && (
-        <div className="fixed inset-0 z-50 bg-black flex">
-          <div className="w-64 bg-black h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg">
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-100 flex">
+          <div className="w-64 h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg" style={{ background: '#111', color: '#fff' }}>
             <button
               className="self-end mb-4 text-white text-2xl"
               aria-label="Fermer le menu navigation"
