@@ -21,6 +21,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ name, level, icon, className }) =
     className={`skill-card flex items-center gap-3 p-4 rounded-lg shadow-md transition-all duration-200 cursor-pointer border-2 ${levelColors[level]} ${className || ''}`}
     style={{
       background: level === 'acquise' ? '#d1fae5' : level === 'en cours' ? '#dbeafe' : '#fee2e2',
+      color: 'black'
     }}
     onMouseEnter={e => {
       (e.currentTarget as HTMLDivElement).style.background = 'var(--section-title)';
@@ -28,7 +29,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ name, level, icon, className }) =
     }}
     onMouseLeave={e => {
       (e.currentTarget as HTMLDivElement).style.background = level === 'acquise' ? '#d1fae5' : level === 'en cours' ? '#dbeafe' : '#fee2e2';
-      (e.currentTarget as HTMLDivElement).style.color = '';
+      (e.currentTarget as HTMLDivElement).style.color = 'black';
     }}
   >
     {icon && <span className="text-2xl">{icon}</span>}
