@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
+const formspreeUrl = process.env.NEXT_PUBLIC_FORMSPREE_URL || '';
+
+function ContactForm({ className }: { className?: string }) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
 
@@ -15,8 +17,7 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     };
     try {
-      // Remplacer l'URL ci-dessous par un service réel (Formspree, EmailJS, ou votre propre API)
-      const res = await fetch('https://formspree.io/f/xwkgyyqg', {
+      const res = await fetch(formspreeUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -52,6 +53,6 @@ const ContactForm: React.FC<{ className?: string }> = ({ className }) => {
       {status === 'error' && <span className="text-red-600">{error}</span>}
     </form>
   );
-};
+}
 
 export default ContactForm;
