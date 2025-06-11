@@ -29,10 +29,13 @@ const recentProjects = [
 
 export default function HomePage() {
 	return (
-		<main className="relative min-h-screen flex flex-col items-center justify-center">
+		<main
+			className="relative min-h-screen flex flex-col items-center justify-center"
+			style={{ background: 'none' }}
+		>
 			<AnimatedBackground />
 			<Navbar />
-			<section className="pt-32 pb-12 w-full max-w-4xl mx-auto text-center">
+			<section className="pt-32 pb-32 w-full max-w-4xl mx-auto text-center" style={{ background: 'none' }}>
 				<h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-2">
 					Kornshdev
 				</h1>
@@ -49,7 +52,7 @@ export default function HomePage() {
 						<ProjectCard key={proj.title} {...proj} />
 					))}
 				</div>
-				<div className="flex gap-4 justify-center">
+				<div className="flex gap-4 justify-center mt-10 mb-10">
 					<a
 						href="/projects"
 						className="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition"

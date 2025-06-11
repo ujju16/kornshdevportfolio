@@ -1,3 +1,5 @@
+"use client";
+
 // Composant ProjectCard pour afficher un projet
 import React from 'react';
 

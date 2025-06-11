@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import ProjectCard from '../../components/ProjectCard';
 import Footer from '../../components/Footer';
+import AnimatedBackground from '../../components/AnimatedBackground';
 
 const projects = [
 	{
@@ -44,8 +45,9 @@ const projects = [
 export default function ProjectsPage() {
 	return (
 		<main className="min-h-screen pt-24 pb-12">
+			<AnimatedBackground />
 			<Navbar />
-			<section className="max-w-4xl mx-auto px-4 rounded-lg shadow-md my-8" style={{ background: 'var(--section-bg)' }}>
+			<section className="max-w-4xl mx-auto px-4 rounded-lg shadow-md my-8" style={{ background: 'none' }}>
 				<h1 className="text-3xl font-bold mb-8 text-center section-title">Projets</h1>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					{projects.map((project) => (

@@ -1,3 +1,5 @@
+"use client";
+
 // Composant SkillCard pour afficher une compétence
 import React from 'react';
 
@@ -9,21 +11,21 @@ interface SkillCardProps {
 }
 
 const levelColors = {
-  'acquise': 'bg-green-100 text-green-700',
-  'en cours': 'bg-yellow-100 text-yellow-700',
-  'à acquérir': 'bg-gray-100 text-gray-700',
+  'acquise': 'bg-green-100 text-green-700 border-green-400',
+  'en cours': 'bg-blue-100 text-blue-700 border-blue-400',
+  'à acquérir': 'bg-red-100 text-red-700 border-red-400',
 };
 
 const SkillCard: React.FC<SkillCardProps> = ({ name, level, icon, className }) => (
   <div
-    className={`flex items-center gap-3 p-4 rounded-lg shadow-md transition-all duration-200 cursor-pointer ${levelColors[level]} ${className || ''}`}
-    style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)', color: 'var(--foreground)' }}
+    className={`flex items-center gap-3 p-4 rounded-lg shadow-md transition-all duration-200 cursor-pointer border-2 ${levelColors[level]} ${className || ''}`}
+    style={{ background: 'none' }}
     onMouseEnter={e => {
       (e.currentTarget as HTMLDivElement).style.background = 'var(--section-title)';
       (e.currentTarget as HTMLDivElement).style.color = '#fff';
     }}
     onMouseLeave={e => {
-      (e.currentTarget as HTMLDivElement).style.background = 'var(--card-bg)';
+      (e.currentTarget as HTMLDivElement).style.background = 'none';
       (e.currentTarget as HTMLDivElement).style.color = 'var(--foreground)';
     }}
   >
