@@ -31,7 +31,7 @@ function ContactForm({ className }: { className?: string }) {
         setStatus('error');
         setError("Erreur lors de l'envoi. Veuillez réessayer.");
       }
-    } catch (err) {
+    } catch {
       setStatus('error');
       setError("Erreur lors de l'envoi. Veuillez réessayer.");
     }
