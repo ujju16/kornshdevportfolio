@@ -62,20 +62,20 @@ const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) =>
       {/* Menu latéral mobile */}
       {open && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-100 flex">
-          <div className="w-64 h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg" style={{ background: '#111', color: '#fff' }}>
+          <div className="w-64 h-full p-6 flex flex-col gap-6 animate-slide-in shadow-lg" style={{ background: '#fff', color: '#111' }}>
             <button
-              className="self-end mb-4 text-white text-2xl"
+              className="self-end mb-4 text-black text-2xl"
               aria-label="Fermer le menu navigation"
               onClick={() => setOpen(false)}
             >
               &times;
             </button>
-            <ul className="flex flex-col gap-4 text-lg font-medium text-white">
+            <ul className="flex flex-col gap-4 text-lg font-medium text-black">
               {navLinks.map((nav) => (
                 <li key={nav.href}>
                   <Link
                     href={nav.href}
-                    className="flex items-center gap-2 px-3 py-2 rounded transition-colors duration-200 nav-link text-white hover:bg-gray-800"
+                    className="flex items-center gap-2 px-3 py-2 rounded transition-colors duration-200 nav-link text-black hover:bg-gray-200"
                     onClick={() => setOpen(false)}
                   >
                     <span>{nav.icon}</span>
