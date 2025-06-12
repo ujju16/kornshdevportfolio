@@ -18,63 +18,27 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./kornshportfolio
 
       - name: Setup environment variables
         run: |
           echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env
           echo "NEXT_PUBLIC_EMAIL=${{ secrets.NEXT_PUBLIC_EMAIL }}" >> .env
-        working-directory: ./kornshportfolio
 
       - name: Build Next.js app
         run: npm run build -- --no-lint
-        working-directory: ./kornshportfolio
 
       - name: Run tests and collect coverage
         run: npm run coverage
-        working-directory: ./kornshportfolio
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: ujju16/kornshdevportfolio
-          directory: ./kornshportfolio/coverage
+          directory: ./coverage
 
       - name: Install Lighthouse
         run: npm install -g lighthouse
 
       - name: Start Next.js server
         run: npm run start &
-        working-directory: ./kornshportfolio
-
-      - name: Wait for Next.js to be ready
-        run: npx wait-on http://localhost:3000/
-        working-directory: ./kornshportfolio
-
-      - name: Run Lighthouse (homepage)
-        run: |
-          lighthouse http://localhost:3000/ \
-            --output html \
-            --output-path ./lighthouse-report.html \
-            --chrome-flags="--headless"
-        working-directory: ./kornshportfolio
-
-      - name: Upload Lighthouse report
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-report
-          path: ./kornshportfolio/lighthouse-report.html
-
-      - name: Stop Next.js server
-        run: pkill -f "next start" || true
-        working-directory: ./kornshportfolio
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./kornshportfolio
-          prod: true

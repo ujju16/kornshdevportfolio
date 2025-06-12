@@ -19,12 +19,16 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci
-        working-directory: ./kornshportfolio
+        run: cd kornshportfolio && npm ci
 
-      - name: Run tests (Vitest)
-        run: npm run coverage
-        working-directory: ./kornshportfolio
+      - name: Run tests (Vitest JUnit)
+        run: cd kornshportfolio && npm run test:ci
+
+      - name: Upload JUnit test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-test-report
+          path: kornshportfolio/test-report.junit.xml
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
