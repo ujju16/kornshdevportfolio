@@ -13,23 +13,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: List files after checkout (debug)
+        run: ls -lR
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install dependencies
-        run: cd kornshportfolio && npm ci
+        run: npm ci
+        working-directory: kornshportfolio
 
       - name: Build Next.js app
-        run: cd kornshportfolio && npm run build -- --no-lint
+        run: npm run build -- --no-lint
+        working-directory: kornshportfolio
 
       - name: Export static site (if needed)
         run: |
-          cd kornshportfolio
           if grep -q 'output:.*export' next.config.ts; then
             npm run export
           fi
+        working-directory: kornshportfolio
 
       - name: Upload production-ready build
         uses: actions/upload-artifact@v4
@@ -39,4 +44,5 @@ jobs:
 
       # Déploiement automatique (exemple avec Vercel CLI, à adapter selon cible)
       # - name: Deploy to Vercel
-      #   run: cd kornshportfolio && npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+      #   run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+      #   working-directory: kornshportfolio
