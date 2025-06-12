@@ -3,6 +3,8 @@
 describe('Navbar E2E', () => {
   beforeEach(() => {
     cy.visit('/');
+    cy.screenshot('apres-visit'); // capture d'écran après chargement de la page
+    cy.get('nav[role="navigation"]', { timeout: 10000 }).should('exist'); // attendre explicitement la navbar
   });
 
   it('affiche la navbar et les liens', () => {

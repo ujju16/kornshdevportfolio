@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 import ContactForm from '../../components/ContactForm';
 import AnimatedBackground from '../../components/AnimatedBackground';
 
@@ -35,7 +34,6 @@ export default function ContactPage() {
           </a>
         </div>
       </section>
-      <Footer />
     </main>
   );
 }

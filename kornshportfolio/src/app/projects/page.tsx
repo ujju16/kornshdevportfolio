@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
 import ProjectCard from '../../components/ProjectCard';
-import Footer from '../../components/Footer';
 import AnimatedBackground from '../../components/AnimatedBackground';
 
 const projects = [
@@ -55,7 +54,6 @@ export default function ProjectsPage() {
 					))}
 				</div>
 			</section>
-			<Footer />
 		</main>
 	);
 }

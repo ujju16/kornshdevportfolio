@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import AnimatedBackground from '../components/AnimatedBackground';
-import Footer from '../components/Footer';
 import ProjectCard from '../components/ProjectCard';
 import SocialShare from '../components/SocialShare';
 
@@ -71,7 +70,6 @@ export default function HomePage() {
 					</a>
 				</div>
 			</section>
-			<Footer />
 			<SocialShare className="justify-center mb-8" />
 		</main>
 	);

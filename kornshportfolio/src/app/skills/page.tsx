@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
 import SkillCard from '../../components/SkillCard';
-import Footer from '../../components/Footer';
 import AnimatedBackground from '../../components/AnimatedBackground';
 
 const skills = [
@@ -91,7 +90,6 @@ export default function SkillsPage() {
 					</div>
 				</div>
 			</section>
-			<Footer />
 		</main>
 	);
 }

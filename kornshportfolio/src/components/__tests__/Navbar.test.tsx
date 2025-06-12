@@ -7,8 +7,10 @@ import Navbar from '../Navbar';
 vi.mock('next/image');
 vi.mock('next/link', () => {
   return {
-    default: function Link(props: any) {
-      return React.createElement('a', { href: props.href, ...props }, props.children);
+    default: function Link(props: { href: string; children: React.ReactNode }) {
+      // Avoid duplicate href in props
+      const { href, children, ...rest } = props;
+      return React.createElement('a', { href, ...rest }, children);
     }
   };
 });
