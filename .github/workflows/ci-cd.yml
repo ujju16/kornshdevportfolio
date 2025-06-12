@@ -26,6 +26,7 @@ jobs:
           pwd
           ls -l
           ls -l kornshportfolio
+          cat kornshportfolio/package.json || echo 'no package.json'
 
       - name: Build Next.js app
         run: cd kornshportfolio && npm run build -- --no-lint
