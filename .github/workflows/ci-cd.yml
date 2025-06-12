@@ -38,4 +38,4 @@ jobs:
 
       # Déploiement automatique (exemple avec Vercel CLI, à adapter selon cible)
       # - name: Deploy to Vercel
-      #   run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+      #   run: cd kornshportfolio && npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
