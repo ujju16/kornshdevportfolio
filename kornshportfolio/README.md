@@ -1,5 +1,7 @@
 # Kornshdev Portfolio
 
+[![codecov](https://codecov.io/gh/ujju16/kornshdevportfolio/branch/main/graph/badge.svg)](https://codecov.io/gh/ujju16/kornshdevportfolio)
+
 Portfolio Next.js TypeScript pour développeur web fullstack spécialisation Android.
 
 ## Fonctionnalités principales
