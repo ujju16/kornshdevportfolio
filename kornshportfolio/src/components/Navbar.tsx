@@ -65,21 +65,22 @@ const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) =>
       <ul className="hidden sm:flex gap-4 md:gap-6 text-md font-medium">
         {navLinks.map((nav) => (
           <li key={nav.href}>
-            <Link
-              href={nav.href}
-              className="flex items-center gap-2 px-3 py-1 rounded transition-colors duration-200 nav-link text-white hover:bg-gray-800"
-              style={{ color: 'white' }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLAnchorElement).style.background = 'var(--section-title)';
-                (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
-                (e.currentTarget as HTMLAnchorElement).style.color = 'white';
-              }}
-            >
-              <span>{nav.icon}</span>
-              {nav.label}
+            <Link href={nav.href} legacyBehavior passHref>
+              <a
+                className="flex items-center gap-2 px-3 py-1 rounded transition-colors duration-200 nav-link text-white hover:bg-gray-800"
+                style={{ color: 'white' }}
+                onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = 'var(--section-title)';
+                  (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+                }}
+                onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'white';
+                }}
+              >
+                <span>{nav.icon}</span>
+                {nav.label}
+              </a>
             </Link>
           </li>
         ))}
@@ -114,13 +115,14 @@ const Navbar = ({ onMenuToggle }: { onMenuToggle?: (open: boolean) => void }) =>
             <ul className="flex flex-col gap-4 text-lg font-medium text-white">
               {navLinks.map((nav) => (
                 <li key={nav.href}>
-                  <Link
-                    href={nav.href}
-                    className="flex items-center gap-2 px-3 py-2 rounded transition-colors duration-200 nav-link text-white hover:bg-gray-800"
-                    onClick={() => setOpen(false)}
-                  >
-                    <span>{nav.icon}</span>
-                    {nav.label}
+                  <Link href={nav.href} legacyBehavior passHref>
+                    <a
+                      className="flex items-center gap-2 px-3 py-2 rounded transition-colors duration-200 nav-link text-white hover:bg-gray-800"
+                      onClick={() => setOpen(false)}
+                    >
+                      <span>{nav.icon}</span>
+                      {nav.label}
+                    </a>
                   </Link>
                 </li>
               ))}
