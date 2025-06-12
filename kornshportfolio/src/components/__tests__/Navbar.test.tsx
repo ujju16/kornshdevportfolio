@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { describe, it, expect, vi } from 'vitest';
 import Navbar from '../Navbar';
 
 // Mock next/image and next/link
@@ -10,20 +10,6 @@ vi.mock('next/link', () => {
     default: function Link(props: any) {
       return React.createElement('a', { href: props.href, ...props }, props.children);
     }
-  };
-});
-
-// Mock window.matchMedia for Vitest (jsdom)
-beforeAll(() => {
-  window.matchMedia = window.matchMedia || function() {
-    return {
-      matches: false,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-      addListener: () => {},
-      removeListener: () => {},
-      dispatchEvent: () => false,
-    };
   };
 });
 
@@ -62,10 +48,10 @@ describe('Navbar', () => {
     closeBtn.focus();
     // Simuler le Tab arrière (shift+tab) sur le bouton de fermeture
     fireEvent.keyDown(document, { key: 'Tab', shiftKey: true });
-    // Utiliser getAllByText pour cibler le dernier lien Contact du menu latéral
-    const allLinks = screen.getAllByText(/Contact/);
-    // Le dernier est celui du menu mobile
-    const lastLink = allLinks[allLinks.length - 1].closest('a');
+    // Utiliser getAllByText pour cibler le dernier lien Contact du menu latéral, qui doit être visible
+    const allLinks = screen.getAllByText(/Contact/).map(el => el.closest('a')).filter(Boolean);
+    // Prendre le dernier lien visible (menu mobile)
+    const lastLink = allLinks[allLinks.length - 1];
     expect(document.activeElement).toBe(lastLink);
   });
 });
