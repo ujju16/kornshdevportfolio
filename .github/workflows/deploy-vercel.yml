@@ -20,17 +20,21 @@ jobs:
         run: | 
           npm install
           npm ci
+        working-directory: kornshportfolio
 
       - name: Setup environment variables
         run: |
           echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env
           echo "NEXT_PUBLIC_EMAIL=${{ secrets.NEXT_PUBLIC_EMAIL }}" >> .env
+        working-directory: kornshportfolio
 
       - name: Build Next.js app
         run: npm run build -- --no-lint
+        working-directory: kornshportfolio
 
       - name: Run tests and collect coverage
         run: npm run coverage
+        working-directory: kornshportfolio
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
@@ -41,6 +45,8 @@ jobs:
 
       - name: Install Lighthouse
         run: npm install -g lighthouse
+        working-directory: kornshportfolio
 
       - name: Start Next.js server
         run: npm run start &
+        working-directory: kornshportfolio
