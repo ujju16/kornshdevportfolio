@@ -21,6 +21,12 @@ jobs:
       - name: Install dependencies
         run: cd kornshportfolio && npm ci
 
+      - name: Debug: list files before build
+        run: |
+          pwd
+          ls -l
+          ls -l kornshportfolio
+
       - name: Build Next.js app
         run: cd kornshportfolio && npm run build -- --no-lint
 
