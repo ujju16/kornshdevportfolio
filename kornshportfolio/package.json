@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "coverage": "vitest run --coverage",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:ci": "vitest run --reporter=junit --outputFile=test-report.junit.xml"
   },
   "dependencies": {
     "next": "15.3.3",

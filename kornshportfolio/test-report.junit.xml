@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="4" failures="0" errors="0" time="0.242663575">
+    <testsuite name="src/components/__tests__/Navbar.test.tsx" timestamp="2025-06-12T18:26:34.644Z" hostname="penguin" tests="4" failures="0" errors="0" skipped="0" time="0.242663575">
+        <testcase classname="src/components/__tests__/Navbar.test.tsx" name="Navbar &gt; renders logo and nav links" time="0.078760551">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navbar.test.tsx" name="Navbar &gt; shows mobile menu when hamburger is clicked" time="0.093929775">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navbar.test.tsx" name="Navbar &gt; closes mobile menu on Esc" time="0.037790231">
+        </testcase>
+        <testcase classname="src/components/__tests__/Navbar.test.tsx" name="Navbar &gt; focus trap works in mobile menu" time="0.028829043">
+        </testcase>
+    </testsuite>
+</testsuites>
