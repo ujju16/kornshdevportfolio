@@ -4,7 +4,16 @@ import { describe, it, expect, vi } from 'vitest';
 import Navbar from '../Navbar';
 
 // Mock next/image and next/link
-vi.mock('next/image');
+vi.mock('next/image', () => {
+  return {
+    __esModule: true,
+    default: (props: any) => {
+      // Simule un <img> classique pour les tests
+      // eslint-disable-next-line jsx-a11y/alt-text
+      return <img {...props} />;
+    },
+  };
+});
 vi.mock('next/link', () => {
   return {
     default: function Link(props: { href: string; children: React.ReactNode }) {

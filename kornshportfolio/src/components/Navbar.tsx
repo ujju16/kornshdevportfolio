@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ThemeSwitch from './ThemeSwitch';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
 
 const navLinks = [
   { href: '/', label: 'Accueil', icon: '🏠' },

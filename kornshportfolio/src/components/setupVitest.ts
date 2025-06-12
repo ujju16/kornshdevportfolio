@@ -15,3 +15,5 @@ if (typeof window !== 'undefined' && !window.matchMedia) {
     } as MediaQueryList;
   };
 }
+
+// Ce fichier sert uniquement au setup global pour Vitest, il ne doit pas être détecté comme un test.
