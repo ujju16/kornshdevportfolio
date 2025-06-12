@@ -22,7 +22,7 @@ jobs:
         run: cd kornshportfolio && npm ci
 
       - name: Debug: list files before build
-        run: 
+        run: |
           pwd
           ls -l
           ls -l kornshportfolio
@@ -32,7 +32,7 @@ jobs:
         run: cd kornshportfolio && npm run build -- --no-lint
 
       - name: Export static site (if needed)
-        run: 
+        run: |
           cd kornshportfolio
           if grep -q 'output:.*export' next.config.ts; then
             npm run export
