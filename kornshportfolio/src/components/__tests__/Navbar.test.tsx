@@ -18,6 +18,7 @@ vi.mock('next/image', () => {
 });
 vi.mock('next/link', () => {
   return {
+    __esModule: true,
     default: function Link(props: { href: string; children: React.ReactNode }) {
       // Avoid duplicate href in props
       const { href, children, ...rest } = props;
