@@ -34,8 +34,12 @@ describe('Navbar E2E', () => {
     cy.get('button[aria-label*="ouvrir le menu"]').click();
     cy.get('[role="dialog"]').within(() => {
       cy.focused().should('have.attr', 'aria-label', 'Fermer le menu navigation');
-      cy.tab({ shift: true });
-      cy.focused().should('contain', 'Contact');
+      // Simuler shift+tab manuellement (fallback si cy.tab ne fonctionne pas)
+      cy.focused().trigger('keydown', { key: 'Tab', shiftKey: true });
+      // Vérifier que le focus revient sur le dernier élément focusable (dernier lien Contact)
+      cy.get('a').last().should('contain', 'Contact').then($el => {
+        expect(Cypress.dom.isFocused($el[0])).to.be.true;
+      });
     });
   });
 });
