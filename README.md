@@ -1,5 +1,7 @@
 # PORTFOLIO DEV WEB FULLSTACK SPECIALIZATION ANDROID
 
+[![codecov](https://codecov.io/gh/ujju16/kornshdevportfolio/branch/main/graph/badge.svg)](https://codecov.io/gh/ujju16/kornshdevportfolio)
+
 Création d'un portfolio de __developpeur web fullstack specialization Android__ donc il est question d'un portfolio simple réalisé en NextJS avec:
 
 ## PROTOTYPAGE
