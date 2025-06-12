@@ -7,9 +7,9 @@ import Navbar from '../Navbar';
 vi.mock('next/image', () => {
   return {
     __esModule: true,
-    default: (props: { alt: string; src: string; [key: string]: any }) => {
+    default: (props: { alt: string; src: string; width?: number; height?: number; className?: string; style?: React.CSSProperties; }) => {
       // Simule un <img> classique pour les tests
-      // eslint-disable-next-line jsx-a11y/alt-text
+      // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
       return <img {...props} />;
     },
   };
