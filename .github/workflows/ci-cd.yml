@@ -19,13 +19,14 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci
+        run: cd kornshportfolio && npm ci
 
       - name: Build Next.js app
-        run: npm run build -- --no-lint
+        run: cd kornshportfolio && npm run build -- --no-lint
 
       - name: Export static site (if needed)
         run: |
+          cd kornshportfolio
           if grep -q 'output:.*export' next.config.ts; then
             npm run export
           fi
@@ -34,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nextjs-build
-          path: .next
+          path: kornshportfolio/.next
 
       # Déploiement automatique (exemple avec Vercel CLI, à adapter selon cible)
       # - name: Deploy to Vercel
